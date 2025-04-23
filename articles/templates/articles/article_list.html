@@ -1,24 +1,30 @@
 {% extends "base_layout.html" %}
+{% load static %}
 {% block title %}Article List{% endblock title %}
 {% block content %}
-    <main>
-        <h1>Article List</h1>
-        <div class="articles">
-            {% for element in articles %}
-                <div class="article__item">
-                    <h2>
-                        <a href="{% url 'article_detail' slug=element.slug %}">
-                            {{ element.title }}
-                        </a>
-                    </h2>
-                    <p>
-                        {{ element.snippet }}
-                    </p>
-                    <time>
-                        {{ element.date }}
-                    </time>
-                </div>
-            {% endfor %}
-        </div>
-    </main>
+<main>
+    <h1>Article List</h1>
+
+    <div class="articles mb-4">
+        {% for element in articles %}
+            <div class="article__item mb-3 p-3 border rounded shadow-sm">
+                <h2>
+                    <a href="{% url 'articles:article_detail' slug=element.slug %}">
+                        {{ element.title }}
+                    </a>
+                </h2>
+                <p>{{ element.snippet }}</p>
+                <time class="text-muted">{{ element.date }}</time>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if user.is_authenticated %}
+    <div class="create-article-wrapper">
+        <a href="{% url 'articles:create' %}" class="create-article-btn">
+            Create article
+        </a>
+    </div>
+{% endif %}
+</main>
 {% endblock content %}

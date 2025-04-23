@@ -21,6 +21,7 @@ h1{
 }
 
 .article__item {
+    width: 1450px;
     background: white;
     padding: 30px;
     border-radius: 10px;
@@ -293,4 +294,92 @@ input {
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
+}
+
+.create-article-btn {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 14px 28px;
+    font-size: 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.create-article-btn:hover {
+    background-color: gray;
+    transform: translateY(-2px);
+}
+
+.create-article-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 40px auto 60px auto;
+    padding: 0 40px;
+}
+
+.create-article-form{
+    width: 1200px;
+    margin: 0 70px;
+}
+
+/* Стиль для формы */
+.create-article-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Стиль для заголовка формы */
+.create-article-form h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Стиль для полей ввода */
+.create-article-form input,
+.create-article-form select,
+.create-article-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Стиль для кнопки отправки */
+.create-article-form button {
+    width: 100%;
+    padding: 10px;
+    background-color:black;
+    color: white;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+/* Стиль кнопки при наведении */
+.create-article-form button:hover {
+    background-color: gray;
+}
+
+/* Стиль для меток полей */
+.create-article-form label {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: block;
+}
+/* Стиль для заголовка формы */
+ h1 {
+    text-align: center;
 }

@@ -16,17 +16,17 @@
         <ul class="nav-links">
             <li><a href="{% url 'homepage' %}">Homepage</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'article_list' %}">Articles</a></li>
+            <li><a href="{% url 'articles:article_list' %}">Articles</a></li>
 
             {% if user.is_authenticated %}
                 <li>
-                    <form  action="{% url 'logout' %}" method="post">
+                    <form  action="{% url 'accounts:logout' %}" method="post">
                         {% csrf_token %}
                         <button type="submit" class="logout-btn">Logout</button>
                     </form>
                 </li>
             {% else %}
-                <li><a href="{% url 'login' %}" class="nav-login-btn">Login</a></li>
+                <li><a href="{% url 'accounts:login' %}" class="nav-login-btn">Login</a></li>
             {% endif %}
         </ul>
     </nav>
