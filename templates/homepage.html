@@ -1,0 +1,13 @@
+{% extends "base_layout.html" %}
+{% load static %}
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+    <div class="homepage">
+        <h1>{{ header }}</h1>
+        <p>{{ message }}</p>
+    </div>
+    <section class="hero-image">
+        <img src="{% static 'images/hero-image.jpg' %}" alt="Welcome Image">
+    </section>
+{% endblock %}
