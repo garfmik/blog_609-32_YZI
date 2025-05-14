@@ -14,7 +14,7 @@ def article_item(request, slug):
 @login_required(login_url='accounts:login')
 def article_create(request):
     if request.method == 'POST':
-        form = forms.CreateArticle(request.POST, request.FILES)
+        form = forms.ArticleForm(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.author = request.user
@@ -22,6 +22,32 @@ def article_create(request):
             return redirect('homepage')
             #return redirect('articles:article_list')
     else:
-        form = forms.CreateArticle()
+        form = forms.ArticleForm()
 
-    return render(request, 'articles/article_create.html', {'form': form})
+    return render(request, 'articles/article_form.html', {'form': form})
+
+@login_required(login_url='accounts:login')
+def article_update(request, slug):
+    article = Article.objects.get(slug=slug)
+    if request.user.id == article.author.id:
+        if request.method == 'POST':
+            form = forms.UpdateArticle(request.POST, request.FILES, instance=article)
+            if form.is_valid():
+                instance = form.save(commit=False)
+                instance.author = request.user
+                instance.save()
+                return redirect('articles:article_detail', slug=article.slug)
+        else:
+            form = forms.ArticleForm(instance=article)
+        return render(request, 'articles/article_form.html', {'form': form})
+    return HttpResponseRedirect('401 Unauthorized', status=401)
+
+@login_required(login_url='accounts:login')
+def article_delete(request, slug):
+    article = Article.objects.get(slug=slug)
+    if request.user.id == article.author.id:
+        if request.method == 'POST':
+            article.delete()
+            return redirect('homepage')
+        return render(request, 'articles/article_confirm_delete.html', {'article': article})
+    return HttpResponseRedirect('401 Unauthorized', status=401)

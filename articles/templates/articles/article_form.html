@@ -1,22 +1,20 @@
 {% extends "base_layout.html" %}
 {% load static %}
 
-{% block title %}Sign Up{% endblock %}
+{% block title %}Create or Update Article{% endblock %}
 
 {% block content %}
-<div class="container vh-100">
-  <div class="row h-100 justify-content-center align-items-center">
-    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
       <div class="card shadow-sm">
         <div class="card-body p-4">
-          <h1 class="h3 text-center mb-4">Sign Up</h1>
-          <form action="{% url 'accounts:signup' %}" method="post" novalidate>
+          <h1 class="h4 text-center mb-4">Create or Update Article</h1>
+          <form action="{% url 'articles:create' %}" method="post" enctype="multipart/form-data" novalidate>
             {% csrf_token %}
             {% for field in form %}
               <div class="mb-3">
-                <label for="{{ field.id_for_label }}" class="form-label">
-                  {{ field.label }}
-                </label>
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
                 {{ field }}
                 {% if field.help_text %}
                   <div class="form-text">{{ field.help_text }}</div>
@@ -26,7 +24,7 @@
                 {% endfor %}
               </div>
             {% endfor %}
-            <button type="submit" class="btn login-btn w-100">Sign up</button>
+            <button type="submit" class="btn btn-dark w-100">Save</button>
           </form>
         </div>
       </div>
